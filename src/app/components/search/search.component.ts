@@ -10,13 +10,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './search.component.scss'
 })
 export class SearchComponent {
-  
+
   isFilterOpen = false;
 
   @Output() search = new EventEmitter<TaskFilter>();
 
   filter: TaskFilter = {
-    userId: 1,
     title: '',
     priority: '',
     status: '',

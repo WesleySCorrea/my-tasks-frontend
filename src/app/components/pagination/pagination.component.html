@@ -1,0 +1,31 @@
+<div class="text-center my-2" *ngIf="paginationState && !paginationState.empty">
+  Mostrando {{ start }} - {{ end }}
+  de {{ paginationState.totalElements }} tarefas
+</div>
+<nav class="mt-4 d-flex justify-content-center mt-3" *ngIf="paginationState.totalPages > 1">
+  
+  <ul class="pagination">
+
+    <li class="page-item" [class.disabled]="paginationState.first">
+      <button class="page-link"
+              (click)="changePage(paginationState.number - 1)">
+        Anterior
+      </button>
+    </li>
+
+    <li class="page-item disabled">
+      <span class="page-link">
+        Página {{ paginationState.number + 1 }} de {{ paginationState.totalPages }}
+      </span>
+    </li>
+
+    <li class="page-item"
+        [class.disabled]="paginationState.last">
+      <button class="page-link"
+              (click)="changePage(paginationState.number + 1)">
+        Próximo
+      </button>
+    </li>
+
+  </ul>
+</nav>

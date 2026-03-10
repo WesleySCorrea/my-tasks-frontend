@@ -1,0 +1,23 @@
+<!-- info-modal.component.html -->
+<div class="modal fade show d-block" *ngIf="showModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">{{ modalTitle || 'Aviso' }}</h5>
+        <button class="btn-close" (click)="close.emit()"></button>
+      </div>
+
+      <div class="modal-body">
+        <p>{{ modalMessage }}</p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-success w-25" (click)="close.emit()">OK</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop fade show" *ngIf="showModal"></div>

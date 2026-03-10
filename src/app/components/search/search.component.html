@@ -1,0 +1,65 @@
+<div class="container my-4">
+  <div class="row g-3 align-items-end">
+
+    <!-- Sempre visível: Texto -->
+    <div class="col">
+      <label class="form-label">Título</label>
+      <input type="text" class="form-control" placeholder="Digite o título..." [(ngModel)]="filter.title">
+    </div>
+
+    <!-- Botão toggler mobile -->
+    <div class="col-auto d-md-none">
+      <button 
+        class="btn btn-outline-secondary"
+        type="button"
+        (click)="toggleFilters()">
+        ☰ Filtros
+      </button>
+    </div>
+
+    <!-- Filtros extras (desktop: visível; mobile: collapse) -->
+    <div
+      id="extraFilters"
+      class="col-12 col-md-7 collapse d-md-block"
+      [class.show]="isFilterOpen">
+
+      <div class="row gy-3 g-md-3">
+
+        <!-- Prioridade -->
+        <div class="col-12 col-md-4">
+          <label class="form-label">Prioridade</label>
+          <select class="form-select" [(ngModel)]="filter.priority">
+            <option value="">Todas</option>
+            <option value="ALTA">Alta</option>
+            <option value="MEDIA">Média</option>
+            <option value="BAIXA">Baixa</option>
+          </select>
+        </div>
+
+        <!-- Status -->
+        <div class="col-12 col-md-4">
+          <label class="form-label">Status</label>
+          <select class="form-select" [(ngModel)]="filter.status">
+            <option value="">Todas</option>
+            <option value="ABERTA">Abertas</option>
+            <option value="ATRASADA">Atrasadas</option>
+            <option value="CONCLUIDA">Concluídas</option>
+          </select>
+        </div>
+
+        <!-- Data -->
+        <div class="col-12 col-md-4">
+          <label class="form-label">Data</label>
+          <input type="date" class="form-control" [(ngModel)]="filter.deadline">
+        </div>
+
+      </div>
+    </div>
+
+        <!-- Sempre visível: Botão -->
+    <div class="col-12 col-md-2 d-grid">
+      <button class="btn btn-success" (click)="onSearch()">Buscar</button>
+    </div>
+
+  </div>
+</div>

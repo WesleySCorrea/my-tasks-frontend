@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-md navbar-light bg-secondary-subtle tall-navbar">
+  <div class="container-fluid mx-3"> 
+
+    <!-- Esquerda: Logo + Home -->
+    <div class="d-flex align-items-center">
+        <a class="navbar-brand me-3" href="/">
+            <img src="/image/My-tasks.png" alt="To-Do Logo" height="40">
+        </a>
+    </div>
+    
+
+    <div class="d-none d-md-flex align-items-center gap-4">
+        <a routerLink="/" 
+            routerLinkActive="active"
+            class="nav-link fs-5 fw-semibold px-0">
+            Home
+        </a>
+
+        <a routerLink="/register-task" 
+            routerLinkActive="active"
+            class="nav-link fs-5 fw-semibold px-0">
+            Nova Task
+        </a>
+    </div>
+
+
+    <!-- Parte direita (só desktop) -->
+    <div class="d-md-flex align-items-center gap-5">
+        <h5 class="mb-0">Bem vindo {{ userName }}!</h5>
+        
+        <div class="d-none d-md-flex" style="cursor: pointer;" (click)="openLogoutModal()">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                width="36"
+                height="36"
+                fill="currentColor"
+                class="bi bi-box-arrow-right"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                <path fill-rule="evenodd"
+                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+            </svg>
+        </div>
+    </div>
+
+    <button class="navbar-toggler d-md-none border-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mobileMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+  </div>
+</nav>
+
+<div class="collapse d-md-none" id="mobileMenu">
+    <div class="bg-secondary-subtle p-3">
+        <a routerLink="/" 
+            routerLinkActive="active"
+            class="nav-link fs-5 pb-2 fw-semibold text-center">
+            Home
+        </a>
+        <a routerLink="/register" 
+            routerLinkActive="active"
+            class="nav-link fs-5 py-2 fw-semibold text-center">
+            Nova Task
+        </a>
+        <a
+            class="nav-link fs-5 py-2 fw-semibold text-center" (click)="openLogoutModal()">
+            Sair
+        </a>
+    </div>
+</div>
+
+<app-confirm-modal
+  [showModal]="showModal"
+  [modalMessage]="modalMessage"
+  (confirm)="logout()"
+  (close)="closeModal()">
+</app-confirm-modal>

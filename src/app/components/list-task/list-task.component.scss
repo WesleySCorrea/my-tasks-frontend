@@ -1,0 +1,18 @@
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.flex-grow-1 {
+  min-width: 0; /* ESSENCIAL quando usa flexbox */
+}
+
+.list-group-item {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.list-group-item:hover {
+  background: #f5f5f5;
+}

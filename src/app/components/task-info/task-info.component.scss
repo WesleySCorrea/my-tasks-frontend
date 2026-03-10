@@ -1,0 +1,27 @@
+@media (max-width: 500px) {
+  .task-info {
+    flex-direction: column;
+  }
+
+  .task-info div:last-child {
+    text-align: left;
+  }
+}
+
+.task-buttons button {
+  min-width: 110px;
+}
+
+@media (max-width: 450px) {
+
+  .task-buttons {
+    width: 100%;
+  }
+
+  .task-buttons button {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.8rem;
+  }
+
+}

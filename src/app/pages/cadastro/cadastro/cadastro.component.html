@@ -1,0 +1,149 @@
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+
+        <div class="card shadow p-4" style="min-width: 350px; max-width: 400px; width: 100%;">
+
+            <form #form="ngForm" (ngSubmit)="cadastrar()">
+
+                <div class="d-flex align-items-center justify-content-center my-4 gap-2">
+                    <img src="/image/My-tasks.png" alt="my-tasks" height="40">
+                    <h3 class="mb-0">Cadastrar</h3>
+                </div>
+
+                <!-- Nome -->
+                <div class="mb-3">
+                    <label class="form-label">Nome</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        placeholder="Digite seu nome"
+                        required
+                        [(ngModel)]="user.name"
+                        #name="ngModel">
+
+                    <div *ngIf="name.invalid && name.touched" class="text-danger">
+
+                        <div *ngIf="name.errors?.['required']">
+                            Nome é obrigatório
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sobrenome -->
+                <div class="mb-3">
+                    <label class="form-label">Sobrenome</label>
+
+                    <input
+                        type="text"
+                        name="surname"
+                        class="form-control"
+                        placeholder="Digite seu sobrenome"
+                        required
+                        [(ngModel)]="user.surName"
+                        #surname="ngModel">
+
+                    <div *ngIf="surname.invalid && surname.touched" class="text-danger">
+
+                        <div *ngIf="surname.errors?.['required']">
+                            Sobrenome é obrigatório
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label class="form-label">E-mail</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="Digite seu email"
+                        required
+                        email
+                        [(ngModel)]="user.email"
+                        #email="ngModel">
+
+                    <div *ngIf="email.invalid && email.touched" class="text-danger">
+
+                        <div *ngIf="email.errors?.['required']">
+                            Email é obrigatório
+                        </div>
+
+                        <div *ngIf="email.errors?.['email']">
+                            Email inválido
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Senha -->
+                <div class="mb-4">
+                    <label class="form-label">Senha</label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Digite sua senha"
+                        required
+                        minlength="6"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$"
+                        [(ngModel)]="user.password"
+                        #password="ngModel">
+
+                    <div *ngIf="password.invalid && password.touched" class="text-danger">
+
+                        <div *ngIf="password.errors?.['required']">
+                            Senha é obrigatória
+                        </div>
+
+                        <div *ngIf="password.errors?.['minlength']">
+                            Senha deve ter pelo menos 6 caracteres
+                        </div>
+
+                        <div *ngIf="!hasUppercase(user.password)">
+                            Falta uma letra maiúscula
+                        </div>
+
+                        <div *ngIf="!hasLowercase(user.password)">
+                            Falta uma letra minúscula
+                        </div>
+
+                        <div *ngIf="!hasNumber(user.password)">
+                            Falta um número
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Botão cadastrar -->
+                <div class="d-grid my-3">
+                    <button
+                        class="btn btn-success"
+                        type="submit"
+                        [disabled]="form.invalid || loading">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+                        Cadastrar
+                    </button>
+                </div>
+
+                <!-- Botão voltar -->
+                <div class="text-center mt-3">
+                    <span>Já tem conta?</span>
+                    <a routerLink="/login" class="ms-1">
+                        Entrar
+                    </a>
+                </div>
+            </form>
+        </div>
+  </div>
+
+<!-- Info Modal-->
+<app-info-modal
+    [showModal]="showInfoModal"
+    [modalTitle]="infoModalTitle"
+    [modalMessage]="infoModalMessage"
+    (close)="onInfoModalClose()">
+</app-info-modal>

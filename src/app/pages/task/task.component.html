@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+
+<div class="page-container">
+
+  <!-- HEADER FIXO -->
+  <div class="container mt-4">
+    <h1 class="mb-0">Task</h1>
+  </div>
+
+  <hr>
+
+  <div class="container"> 
+    <app-task-info
+      *ngIf="task"
+      [task]="task"
+      (delete)="openDeleteModal()"
+      (update)="openUpdateModal()"
+      (finish)="openFinishModal()"
+      (reopen)="openReopenModal()">
+    </app-task-info>
+  </div>
+</div>
+
+<app-confirm-modal
+  [showModal]="showModal"
+  [modalMessage]="modalMessage"
+  (confirm)="confirmAction()"
+  (close)="closeModal()">
+</app-confirm-modal>

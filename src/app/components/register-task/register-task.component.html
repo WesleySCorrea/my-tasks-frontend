@@ -1,0 +1,72 @@
+<div class="container mt-4">
+  <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+
+    <!-- Título -->
+    <div class="mb-3">
+      <label class="form-label">Título</label>
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        [(ngModel)]="task.title"
+        required placeholder="Digite o título da task">
+    </div>
+
+    <!-- Descrição -->
+    <div class="mb-3">
+      <label class="form-label">Descrição</label>
+      <textarea
+        class="form-control"
+        rows="10"
+        name="description"
+        placeholder="Escreva detalhes ou observações"
+        [(ngModel)]="task.description">
+      </textarea>
+    </div>
+    
+    <!-- Container principal -->
+    <div class="row g-2 align-items-end mb-4">
+
+      <!-- Campos -->
+      <div class="col-6 col-md-auto">
+        <label class="form-label">Prioridade</label>
+        <select class="form-select" [(ngModel)]="task.priority" name="priority" required>
+          <option value="BAIXA">Baixa</option>
+          <option value="MEDIA">Média</option>
+          <option value="ALTA">Alta</option>
+        </select>
+      </div>
+
+      <div class="col-6 col-md-auto">
+        <label class="form-label">Prazo</label>
+        <input type="date" class="form-control" [(ngModel)]="task.deadline" name="deadline" required>
+      </div>
+
+      <!-- Botão Desktop -->
+      <div class="col-md-2 d-none d-md-block ms-auto">
+        <button type="submit" class="btn btn-success w-100" [disabled]="taskForm.invalid">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+          Cadastrar
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Botão Mobile -->
+    <div class="d-block d-md-none my-4">
+      <button type="submit" class="btn btn-success w-100" [disabled]="taskForm.invalid">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+        Cadastrar
+      </button>
+    </div>
+
+  </form>
+</div>
+
+<!-- Info Modal-->
+<app-info-modal
+    [showModal]="showInfoModal"
+    [modalTitle]="infoModalTitle"
+    [modalMessage]="infoModalMessage"
+    (close)="onInfoModalClose()">
+</app-info-modal>

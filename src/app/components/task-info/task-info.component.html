@@ -1,0 +1,104 @@
+<div class="container my-5">
+
+  <div class="card shadow-sm">
+
+    <!-- HEADER -->
+    <div class="card-header d-flex justify-content-between align-items-center gap-4">
+      <h4 class="my-3">{{ task.title }}</h4>
+
+      <span class="badge"
+            [ngClass]="statusClass(task.status)">
+        {{ task.status }}
+      </span>
+    </div>
+
+    <!-- BODY -->
+    <div class="card-body">
+
+      <!-- Descrição -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Descrição</label>
+
+        <textarea
+          class="form-control"
+          rows="10"
+          [(ngModel)]="task.description">
+        </textarea>
+
+      </div>
+
+      <!-- PRIORIDADE -->
+      <div class="row">
+
+        <!-- PRIORIDADE -->
+        <div class="col-md-6 mb-3">
+            <label class="form-label fw-semibold">Prioridade</label>
+
+            <select class="form-select"
+                    [(ngModel)]="task.priority">
+
+            <option value="BAIXA">Baixa</option>
+            <option value="MEDIA">Média</option>
+            <option value="ALTA">Alta</option>
+
+            </select>
+        </div>
+
+        <!-- PRAZO -->
+        <div class="col-md-6 mb-3">
+            <label class="form-label fw-semibold">Prazo</label>
+
+            <input
+                type="date"
+                class="form-control"
+                [(ngModel)]="task.deadline">
+            </div>
+            
+        </div>
+
+        <!-- INFO -->
+        <div class="task-info d-flex justify-content-between flex-wrap text-muted small mb-4">
+
+            <div>
+                Criado em: {{ task.createdAt | date:'dd/MM/yyyy HH:mm' }}
+            </div>
+
+            <div class="text-md-end">
+                Atualizado em: {{ task.updatedAt | date:'dd/MM/yyyy HH:mm' }}
+            </div>
+
+        </div>
+
+        <!-- BOTÕES -->
+        <div class="task-buttons d-flex gap-2 justify-content-end">
+
+            <button
+                class="btn btn-danger" (click)="delete.emit()">
+                Excluir
+            </button>
+
+            <button
+                class="btn btn-primary" (click)="update.emit()">
+                Atualizar
+            </button>
+
+            <!-- Concluir -->
+            <button
+                *ngIf="task.status !== 'CONCLUIDA'"
+                class="btn btn-success" (click)="finish.emit()">
+                Concluir
+            </button>
+
+            <!-- Reabrir -->
+            <button
+                *ngIf="task.status === 'CONCLUIDA'"
+                class="btn btn-success" (click)="reopen.emit()">
+                Reabrir
+            </button>
+
+        </div>
+
+    </div>
+  </div>
+
+</div>

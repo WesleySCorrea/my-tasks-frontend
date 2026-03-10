@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<div class="page-container">
+
+  <!-- HEADER FIXO -->
+  <div class="container mt-4">
+    <h1 class="mb-0">Minhas Tasks</h1>
+  </div>
+
+  <hr>
+
+  <!-- FILTRO FIXO -->
+  <div class="container">
+    <app-search (search)="onSearch($event)"></app-search>
+  </div>
+
+  <!-- LISTA COM SCROLL -->
+  <div class="list-container">
+    <div class="container">
+      <app-list-task 
+        [tasks]="tasks"
+        (finish)="openFinishModal($event)"
+        (delete)="openDeleteModal($event)">
+      </app-list-task>
+    </div>
+  </div>
+
+  <!-- PAGINAÇÃO FIXA -->
+  <div class="container">
+    <app-pagination
+      *ngIf="paginationState"
+      [paginationState]="paginationState"
+      (pageChange)="onPageChange($event)">
+    </app-pagination>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<app-confirm-modal
+  [showModal]="showModal"
+  [modalMessage]="modalMessage"
+  (confirm)="confirmAction()"
+  (close)="closeModal()">
+</app-confirm-modal>

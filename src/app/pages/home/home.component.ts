@@ -13,11 +13,11 @@ import { ConfirmModalComponent } from "../../components/modal/confirm-modal/conf
 @Component({
   selector: 'app-home',
   imports: [
-    NavbarComponent, 
-    ListTaskComponent, 
-    SearchComponent, 
-    PaginationComponent, 
-    CommonModule, 
+    NavbarComponent,
+    ListTaskComponent,
+    SearchComponent,
+    PaginationComponent,
+    CommonModule,
     ConfirmModalComponent
   ],
   templateUrl: './home.component.html',
@@ -25,7 +25,7 @@ import { ConfirmModalComponent } from "../../components/modal/confirm-modal/conf
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService) { }
 
   actionType: 'finish' | 'delete' | null = null;
   modalMessage: string = '';
@@ -34,7 +34,6 @@ export class HomeComponent implements OnInit {
   paginationState!: PaginationState;
   tasks: TaskBasic[] = [];
   currentFilter: TaskFilter = {
-    userId: 1
   };
 
   ngOnInit(): void {
@@ -44,13 +43,13 @@ export class HomeComponent implements OnInit {
   onSearch(filter: TaskFilter) {
     this.currentFilter = filter;
 
-    this,this.loadTasks(0);
+    this, this.loadTasks(0);
   }
 
   loadTasks(page: number = 0) {
 
     this.taskService
-      .getTasks(this.currentFilter, page) 
+      .getTasks(this.currentFilter, page)
       .subscribe(response => {
 
         this.paginationState = response;
@@ -87,7 +86,7 @@ export class HomeComponent implements OnInit {
   finishTask() {
 
     this.taskService.completeTask(this.selectedTask.id)
-    .subscribe({
+      .subscribe({
         next: () => {
           this.showModal = false;
           this.loadTasks();

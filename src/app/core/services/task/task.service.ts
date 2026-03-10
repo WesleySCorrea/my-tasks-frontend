@@ -24,7 +24,7 @@ export class TaskService {
   getTasks(filter: TaskFilter, page: number) {
 
     let params = new HttpParams()
-    //   .set('page', page)
+      .set('page', page)
 
     Object.entries(filter).forEach(([key, value]) => {
       if (value !== undefined && value !== null && value.toString().trim() !== '') {
